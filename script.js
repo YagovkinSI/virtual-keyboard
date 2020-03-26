@@ -96,8 +96,10 @@ for (var i = 0; i < buttons.length; i++) {
     var keyboardButton = document.createElement('div');
     keyboardButton.classList.add('keyboard__button');
     keyboardButton.dataset.code = buttons[i].code;
+    keyboardButton.dataset.keydown = 'false';
     keyboardButton.textContent = buttons[i].symbol;
     keyboardButton.addEventListener('click', onClickButton);
+    keyboardButton.addEventListener('transitionend', onAnimationEnd);
     if (big_buttons[`${i}`] != undefined)
         keyboardButton.classList.add(big_buttons[`${i}`]);
     keyboard.appendChild(keyboardButton);   
@@ -107,18 +109,34 @@ document.addEventListener('keydown', (event) => {
     let button = document.querySelector(`[data-code="${event.code}"]`);
     if (button == null)
         return;
-    button.classList.add('keyboard__button_active');
+    button.dataset.keydown = 'true';
+    setActiveButton(button);
 })
 
 document.addEventListener('keyup', (event) => {
     let button = document.querySelector(`[data-code="${event.code}"]`);
     if (button == null)
         return;
-    button.classList.remove('keyboard__button_active');
+    button.dataset.keydown = 'fasle';
+    unsetActiveButton(button);
 })
 
 function onClickButton() {
+    setActiveButton(this);
     addSymbolToTextArea(this.textContent);
+}
+
+function onAnimationEnd() {
+    if (this.dataset.keydown = 'false')
+        unsetActiveButton(this);
+}
+
+function setActiveButton(button) {
+    button.classList.add('keyboard__button_active');
+}
+
+function unsetActiveButton(button) {
+    button.classList.remove('keyboard__button_active');
 }
 
 function addSymbolToTextArea(symbol) {

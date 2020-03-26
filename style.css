@@ -46,6 +46,8 @@
 }
 
 .keyboard__button_active {
+    transform: scale(0.7);
     background-color: #71b0f1;
+    transition: all 0.1s ease;
 }
 
