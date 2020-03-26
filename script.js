@@ -7,71 +7,71 @@ keyboard.classList.add('keyboard');
 document.body.append(keyboard);
 
 const buttons = [
-    { symbol: '`' }, //0
-    { symbol: '1' }, //1 
-    { symbol: '2' }, //2
-    { symbol: '3' }, //3
-    { symbol: '4' }, //4
-    { symbol: '5' }, //5
-    { symbol: '6' }, //6
-    { symbol: '7' }, //7
-    { symbol: '8' }, //8
-    { symbol: '9' }, //9
-    { symbol: '0' }, //10
-    { symbol: '-' }, //11
-    { symbol: '=' }, //12
-    { symbol: 'Backspace' }, //13
-      
-    { symbol: 'Tab' }, //14
-    { symbol: 'q' }, //15
-    { symbol: 'w' }, //16
-    { symbol: 'e' }, //17
-    { symbol: 'r' }, //18
-    { symbol: 't' }, //19
-    { symbol: 'y' }, //20
-    { symbol: 'u' }, //21
-    { symbol: 'i' }, //22
-    { symbol: 'o' }, //23
-    { symbol: 'p' }, //24
-    { symbol: '[' }, //25
-    { symbol: ']' }, //26
-    { symbol: '\\' }, //27
-      
-    { symbol: 'Caps Lock' }, //28
-    { symbol: 'a' }, //29
-    { symbol: 'd' }, //30
-    { symbol: 'f' }, //31
-    { symbol: 'g' }, //32
-    { symbol: 's' }, //33
-    { symbol: 'h' }, //34
-    { symbol: 'j' }, //35
-    { symbol: 'k' }, //36
-    { symbol: 'l' }, //37
-    { symbol: ';' }, //38
-    { symbol: '\'' }, //37
-    { symbol: 'Enter' }, //40
-      
-    { symbol: 'Shift' }, //41
-    { symbol: 'z' }, //42
-    { symbol: 'x' }, //43
-    { symbol: 'c' }, //44
-    { symbol: 'v' }, //45
-    { symbol: 'b' }, //46
-    { symbol: 'n' }, //47
-    { symbol: 'm' }, //48
-    { symbol: ',' }, //49
-    { symbol: '.' }, //50
-    { symbol: '\/' }, //51
-    { symbol: 'Shift' }, //52
-      
-    { symbol: 'Ctrl' }, //53
-    { symbol: 'Win' }, //54
-    { symbol: 'Alt' }, //55
-    { symbol: ' ' }, //56
-    { symbol: 'Alt Gr' }, //57
-    { symbol: 'Win' }, //58
-    { symbol: 'Menu' }, //59
-    { symbol: 'Ctrl' } //60
+    { code: 'Backquote', symbol: '`' }, //0
+    { code: 'Digit1', symbol: '1' }, //1 
+    { code: 'Digit2', symbol: '2' }, //2
+    { code: 'Digit3', symbol: '3' }, //3
+    { code: 'Digit4', symbol: '4' }, //4
+    { code: 'Digit5', symbol: '5' }, //5
+    { code: 'Digit6', symbol: '6' }, //6
+    { code: 'Digit7', symbol: '7' }, //7
+    { code: 'Digit8', symbol: '8' }, //8
+    { code: 'Digit9', symbol: '9' }, //9
+    { code: 'Digit0', symbol: '0' }, //10
+    { code: 'Minus', symbol: '-' }, //11
+    { code: 'Equal', symbol: '=' }, //12
+    { code: 'Backspace', symbol: 'Backspace' }, //13
+
+    { code: 'Tab', symbol: 'Tab' }, //14
+    { code: 'KeyQ', symbol: 'q' }, //15
+    { code: 'KeyW', symbol: 'w' }, //16
+    { code: 'KeyE', symbol: 'e' }, //17
+    { code: 'KeyR', symbol: 'r' }, //18
+    { code: 'KeyT', symbol: 't' }, //19
+    { code: 'KeyY', symbol: 'y' }, //20
+    { code: 'KeyU', symbol: 'u' }, //21
+    { code: 'KeyI', symbol: 'i' }, //22
+    { code: 'KeyO', symbol: 'o' }, //23
+    { code: 'KeyP', symbol: 'p' }, //24
+    { code: 'BracketLeft', symbol: '[' }, //25
+    { code: 'BracketRight', symbol: ']' }, //26
+    { code: 'Backslash', symbol: '\\' }, //27
+
+    { code: 'CapsLock', symbol: 'Caps Lock' }, //28
+    { code: 'KeyA', symbol: 'a' }, //29
+    { code: 'KeyS', symbol: 'd' }, //30
+    { code: 'KeyD', symbol: 'f' }, //31
+    { code: 'KeyF', symbol: 'g' }, //32
+    { code: 'KeyG', symbol: 's' }, //33
+    { code: 'KeyH', symbol: 'h' }, //34
+    { code: 'KeyJ', symbol: 'j' }, //35
+    { code: 'KeyK', symbol: 'k' }, //36
+    { code: 'KeyL', symbol: 'l' }, //37
+    { code: 'Semicolon', symbol: ';' }, //38
+    { code: 'Quote', symbol: '\'' }, //37
+    { code: 'Enter', symbol: 'Enter' }, //40
+
+    { code: 'ShiftLeft', symbol: 'Shift' }, //41
+    { code: 'KeyZ', symbol: 'z' }, //42
+    { code: 'KeyX', symbol: 'x' }, //43
+    { code: 'KeyC', symbol: 'c' }, //44
+    { code: 'KeyV', symbol: 'v' }, //45
+    { code: 'KeyB', symbol: 'b' }, //46
+    { code: 'KeyN', symbol: 'n' }, //47
+    { code: 'KeyM', symbol: 'm' }, //48
+    { code: 'Comma', symbol: ',' }, //49
+    { code: 'Period', symbol: '.' }, //50
+    { code: 'Slash', symbol: '\/' }, //51
+    { code: 'ShiftRight', symbol: 'Shift' }, //52
+
+    { code: 'ControlLeft', symbol: 'Ctrl' }, //53
+    { code: 'MetaLeft', symbol: 'Win' }, //54
+    { code: 'AltLeft', symbol: 'Alt' }, //55
+    { code: 'Space', symbol: ' ' }, //56
+    { code: 'AltRight', symbol: 'Alt Gr' }, //57
+    { code: 'MetaRight', symbol: 'Win' }, //58
+    { code: 'ContextMenu', symbol: 'Menu' }, //59
+    { code: 'ControlRight', symbol: 'Ctrl' } //60
 ];
 
 var big_buttons = {
@@ -90,19 +90,30 @@ var big_buttons = {
     "58": "keyboard__button_x1-25",
     "59": "keyboard__button_x1-25",
     "60": "keyboard__button_x1-25",
-};
-    
-
+};  
 
 for (var i = 0; i < buttons.length; i++) {
     var keyboardButton = document.createElement('div');
     keyboardButton.classList.add('keyboard__button');
+    keyboardButton.dataset.code = buttons[i].code;
     keyboardButton.textContent = buttons[i].symbol;
     if (big_buttons[`${i}`] != undefined)
         keyboardButton.classList.add(big_buttons[`${i}`]);
     keyboard.appendChild(keyboardButton);   
 }
 
+document.addEventListener('keydown', (event) => {
+    let button = document.querySelector(`[data-code="${event.code}"]`);
+    if (button == null)
+        return;
+    button.classList.add('keyboard__button_active');
+})
 
+document.addEventListener('keyup', (event) => {
+    let button = document.querySelector(`[data-code="${event.code}"]`);
+    if (button == null)
+        return;
+    button.classList.remove('keyboard__button_active');
+})
 
 

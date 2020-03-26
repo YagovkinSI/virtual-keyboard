@@ -45,3 +45,7 @@
     grid-column: span 25;
 }
 
+.keyboard__button_active {
+    background-color: #71b0f1;
+}
+
