@@ -1,0 +1,51 @@
+.textarea {
+    width: 773px;
+    height: 163px;
+    resize: none;
+}
+
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(60, 8px);
+    grid-gap: 5px;
+}
+
+.keyboard__button {
+    background-color: #dedede;
+    grid-column: span 4;
+    line-height: 40px;
+    text-align: center;
+}
+
+.keyboard__button_x1-25 {
+    grid-column: span 5;
+}
+
+.keyboard__button_x1-5 {
+    grid-column: span 6;
+}
+
+.keyboard__button_x1-75 {
+    grid-column: span 7;
+}
+
+.keyboard__button_x2 {
+    grid-column: span 8;
+}
+
+.keyboard__button_x2-25 {
+    grid-column: span 9;
+}
+
+.keyboard__button_x2-75 {
+    grid-column: span 11;
+}
+
+.keyboard__button_x6-25 {
+    grid-column: span 25;
+}
+
+.keyboard__button_active {
+    background-color: #71b0f1;
+}
+
