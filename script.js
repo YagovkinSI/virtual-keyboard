@@ -97,6 +97,7 @@ for (var i = 0; i < buttons.length; i++) {
     keyboardButton.classList.add('keyboard__button');
     keyboardButton.dataset.code = buttons[i].code;
     keyboardButton.textContent = buttons[i].symbol;
+    keyboardButton.addEventListener('click', onClickButton);
     if (big_buttons[`${i}`] != undefined)
         keyboardButton.classList.add(big_buttons[`${i}`]);
     keyboard.appendChild(keyboardButton);   
@@ -115,5 +116,13 @@ document.addEventListener('keyup', (event) => {
         return;
     button.classList.remove('keyboard__button_active');
 })
+
+function onClickButton() {
+    addSymbolToTextArea(this.textContent);
+}
+
+function addSymbolToTextArea(symbol) {
+    input.textContent += symbol;
+}
 
 
