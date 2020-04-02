@@ -39,10 +39,10 @@ const buttons = [
 
   { code: 'CapsLock', symbol: 'Caps Lock' }, // 28
   { code: 'KeyA', symbol: 'a' }, // 29
-  { code: 'KeyS', symbol: 'd' }, // 30
-  { code: 'KeyD', symbol: 'f' }, // 31
-  { code: 'KeyF', symbol: 'g' }, // 32
-  { code: 'KeyG', symbol: 's' }, // 33
+  { code: 'KeyS', symbol: 's' }, // 30
+  { code: 'KeyD', symbol: 'd' }, // 31
+  { code: 'KeyF', symbol: 'f' }, // 32
+  { code: 'KeyG', symbol: 'g' }, // 33
   { code: 'KeyH', symbol: 'h' }, // 34
   { code: 'KeyJ', symbol: 'j' }, // 35
   { code: 'KeyK', symbol: 'k' }, // 36
@@ -117,13 +117,13 @@ document.addEventListener('keydown', (event) => {
   const button = document.querySelector(`[data-code="${event.code}"]`);
   if (button == null) { return; }
   button.dataset.keydown = 'true';
-  setActiveButton(button);
+  onClickButton.call(button);
 });
 
 document.addEventListener('keyup', (event) => {
   const button = document.querySelector(`[data-code="${event.code}"]`);
   if (button == null) { return; }
-  button.dataset.keydown = 'fasle';
+  button.dataset.keydown = 'false';
   unsetActiveButton(button);
 });
 
