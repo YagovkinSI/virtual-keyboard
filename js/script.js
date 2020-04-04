@@ -1,4 +1,4 @@
-﻿const input = document.createElement('textarea');
+const input = document.createElement('textarea');
 input.classList.add('textarea');
 document.body.append(input);
 
@@ -11,7 +11,7 @@ lagend.classList.add('lagend');
 lagend.textContent = 'Change keyboard layout: AltLeft + ShiftLeft';
 document.body.append(lagend);
 
-let keyboardLayoutIndex = 0;
+let keyboardLayoutIndex = parseInt(localStorage.keyboardLayoutIndex, 10);
 const keydowns = [];
 
 const buttons = [
@@ -126,6 +126,7 @@ function fillKeyboardLayout() {
 
 function changeKeyboardLayout() {
   keyboardLayoutIndex = (keyboardLayoutIndex + 1) % 2;
+  localStorage.setItem('keyboardLayoutIndex', keyboardLayoutIndex);
   fillKeyboardLayout();
 }
 
