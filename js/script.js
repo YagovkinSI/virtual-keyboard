@@ -12,6 +12,7 @@ lagend.textContent = 'Change keyboard layout: AltLeft + ShiftLeft';
 document.body.append(lagend);
 
 let keyboardLayoutIndex = parseInt(localStorage.keyboardLayoutIndex, 10);
+if (Number.isNaN(keyboardLayoutIndex)) keyboardLayoutIndex = 0;
 const keydowns = [];
 
 const buttons = [
