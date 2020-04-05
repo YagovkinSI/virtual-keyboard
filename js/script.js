@@ -52,12 +52,14 @@ document.body.append(keyboard);
 
 const lagend = document.createElement('div');
 lagend.classList.add('lagend');
-lagend.textContent = 'Change keyboard layout: AltLeft + ShiftLeft';
+lagend.textContent = 'The keyboard was created in the Windows OS. Change keyboard layout: AltLeft + ShiftLeft.';
 document.body.append(lagend);
 
 let keyboardLayoutIndex = parseInt(localStorage.keyboardLayoutIndex, 10);
 if (Number.isNaN(keyboardLayoutIndex)) keyboardLayoutIndex = 0;
 const keydowns = [];
+
+const inputedSymbols = [];
 
 const buttons = [
   new Button('Backquote', '`', '`'),
@@ -105,7 +107,6 @@ const buttons = [
   new Button('Quote', '\'', 'э'),
   new Button('Enter', 'Enter', 'Enter', 'x2.25'),
 
-
   new Button('ShiftLeft', 'Shift', 'Shift', 'x2.25'),
   new Button('KeyZ', 'z', 'я'),
   new Button('KeyX', 'x', 'ч'),
@@ -139,7 +140,29 @@ function unsetActiveButton(button) {
 }
 
 function addSymbolToTextArea(symbol) {
-  input.textContent += symbol;
+  switch (symbol) {
+    case 'Backspace':
+      inputedSymbols.pop();
+      break;
+    case 'Enter':
+      inputedSymbols.push('\r\n');
+      break;
+    case 'Tab':
+      inputedSymbols.push('\t');
+      break;
+    case 'Caps Lock':
+    case 'Shift':
+    case 'Ctrl':
+    case 'Win':
+    case 'Alt':
+    case 'Alt Gr':
+    case 'Menu':
+      break;
+    default:
+      inputedSymbols.push(symbol);
+      break;
+  }
+  input.textContent = inputedSymbols.join('');
 }
 
 function onAnimationEnd() {
