@@ -1,3 +1,47 @@
+
+class Button {
+  constructor(code, enSymbol, ruSymbol, buttonSize = 'x1') {
+    this.code = code;
+    this.symbols = [enSymbol, ruSymbol];
+    this.setButtonSize(buttonSize);
+  }
+
+  setButtonSize(size) {
+    switch (size) {
+      case 'x1.25':
+        this.buttonSize = 'keyboard__button_x1-25';
+        break;
+      case 'x1.5':
+        this.buttonSize = 'keyboard__button_x1-5';
+        break;
+      case 'x1.75':
+        this.buttonSize = 'keyboard__button_x1-75';
+        break;
+      case 'x2':
+        this.buttonSize = 'keyboard__button_x2';
+        break;
+      case 'x2.25':
+        this.buttonSize = 'keyboard__button_x2-25';
+        break;
+      case 'x2.75':
+        this.buttonSize = 'keyboard__button_x2-75';
+        break;
+      case 'x6.25':
+        this.buttonSize = 'keyboard__button_x6-25';
+        break;
+      default:
+      case 'x1':
+        this.buttonSize = undefined;
+        break;
+    }
+  }
+
+  getSymbol(keyboardLayoutIndex) {
+    return this.symbols[keyboardLayoutIndex];
+  }
+}
+
+
 const input = document.createElement('textarea');
 input.classList.add('textarea');
 document.body.append(input);
@@ -16,90 +60,75 @@ if (Number.isNaN(keyboardLayoutIndex)) keyboardLayoutIndex = 0;
 const keydowns = [];
 
 const buttons = [
-  { code: 'Backquote', symbol: '`', ru_symbol: '`' }, // 0
-  { code: 'Digit1', symbol: '1', ru_symbol: '1' }, // 1
-  { code: 'Digit2', symbol: '2', ru_symbol: '2' }, // 2
-  { code: 'Digit3', symbol: '3', ru_symbol: '3' }, // 3
-  { code: 'Digit4', symbol: '4', ru_symbol: '4' }, // 4
-  { code: 'Digit5', symbol: '5', ru_symbol: '5' }, // 5
-  { code: 'Digit6', symbol: '6', ru_symbol: '6' }, // 6
-  { code: 'Digit7', symbol: '7', ru_symbol: '7' }, // 7
-  { code: 'Digit8', symbol: '8', ru_symbol: '8' }, // 8
-  { code: 'Digit9', symbol: '9', ru_symbol: '9' }, // 9
-  { code: 'Digit0', symbol: '0', ru_symbol: '0' }, // 10
-  { code: 'Minus', symbol: '-', ru_symbol: '-' }, // 11
-  { code: 'Equal', symbol: '=', ru_symbol: '=' }, // 12
-  { code: 'Backspace', symbol: 'Backspace', ru_symbol: 'Backspace' }, // 13
+  new Button('Backquote', '`', '`'),
+  new Button('Digit1', '1', '1'),
+  new Button('Digit2', '2', '2'),
+  new Button('Digit3', '3', '3'),
+  new Button('Digit4', '4', '4'),
+  new Button('Digit5', '5', '5'),
+  new Button('Digit6', '6', '6'),
+  new Button('Digit7', '7', '7'),
+  new Button('Digit8', '8', '8'),
+  new Button('Digit9', '9', '9'),
+  new Button('Digit0', '0', '0'),
+  new Button('Minus', '-', '-'),
+  new Button('Equal', '=', '='),
+  new Button('Backspace', 'Backspace', 'Backspace', 'x2'),
 
-  { code: 'Tab', symbol: 'Tab', ru_symbol: 'Tab' }, // 14
-  { code: 'KeyQ', symbol: 'q', ru_symbol: 'й' }, // 15
-  { code: 'KeyW', symbol: 'w', ru_symbol: 'ц' }, // 16
-  { code: 'KeyE', symbol: 'e', ru_symbol: 'у' }, // 17
-  { code: 'KeyR', symbol: 'r', ru_symbol: 'к' }, // 18
-  { code: 'KeyT', symbol: 't', ru_symbol: 'е' }, // 19
-  { code: 'KeyY', symbol: 'y', ru_symbol: 'н' }, // 20
-  { code: 'KeyU', symbol: 'u', ru_symbol: 'г' }, // 21
-  { code: 'KeyI', symbol: 'i', ru_symbol: 'ш' }, // 22
-  { code: 'KeyO', symbol: 'o', ru_symbol: 'щ' }, // 23
-  { code: 'KeyP', symbol: 'p', ru_symbol: 'з' }, // 24
-  { code: 'BracketLeft', symbol: '[', ru_symbol: 'х' }, // 25
-  { code: 'BracketRight', symbol: ']', ru_symbol: 'ъ' }, // 26
-  { code: 'Backslash', symbol: '\\', ru_symbol: '\\' }, // 27
 
-  { code: 'CapsLock', symbol: 'Caps Lock', ru_symbol: 'Caps Lock' }, // 28
-  { code: 'KeyA', symbol: 'a', ru_symbol: 'ф' }, // 29
-  { code: 'KeyS', symbol: 's', ru_symbol: 'ы' }, // 30
-  { code: 'KeyD', symbol: 'd', ru_symbol: 'в' }, // 31
-  { code: 'KeyF', symbol: 'f', ru_symbol: 'а' }, // 32
-  { code: 'KeyG', symbol: 'g', ru_symbol: 'п' }, // 33
-  { code: 'KeyH', symbol: 'h', ru_symbol: 'р' }, // 34
-  { code: 'KeyJ', symbol: 'j', ru_symbol: 'о' }, // 35
-  { code: 'KeyK', symbol: 'k', ru_symbol: 'л' }, // 36
-  { code: 'KeyL', symbol: 'l', ru_symbol: 'д' }, // 37
-  { code: 'Semicolon', symbol: ';', ru_symbol: 'ж' }, // 38
-  { code: 'Quote', symbol: '\'', ru_symbol: 'э' }, // 37
-  { code: 'Enter', symbol: 'Enter', ru_symbol: 'Enter' }, // 40
+  new Button('Tab', 'Tab', 'Tab', 'x1.5'),
+  new Button('KeyQ', 'q', 'й'),
+  new Button('KeyW', 'w', 'ц'),
+  new Button('KeyE', 'e', 'у'),
+  new Button('KeyR', 'r', 'к'),
+  new Button('KeyT', 't', 'е'),
+  new Button('KeyY', 'y', 'н'),
+  new Button('KeyU', 'u', 'г'),
+  new Button('KeyI', 'i', 'ш'),
+  new Button('KeyO', 'o', 'щ'),
+  new Button('KeyP', 'p', 'з'),
+  new Button('BracketLeft', '[', 'х'),
+  new Button('BracketRight', ']', 'ъ'),
+  new Button('Backslash', '\\', '\\', 'x1.5'),
 
-  { code: 'ShiftLeft', symbol: 'Shift', ru_symbol: 'Shift' }, // 41
-  { code: 'KeyZ', symbol: 'z', ru_symbol: 'я' }, // 42
-  { code: 'KeyX', symbol: 'x', ru_symbol: 'ч' }, // 43
-  { code: 'KeyC', symbol: 'c', ru_symbol: 'с' }, // 44
-  { code: 'KeyV', symbol: 'v', ru_symbol: 'м' }, // 45
-  { code: 'KeyB', symbol: 'b', ru_symbol: 'и' }, // 46
-  { code: 'KeyN', symbol: 'n', ru_symbol: 'т' }, // 47
-  { code: 'KeyM', symbol: 'm', ru_symbol: 'ь' }, // 48
-  { code: 'Comma', symbol: ',', ru_symbol: 'б' }, // 49
-  { code: 'Period', symbol: '.', ru_symbol: 'ю' }, // 50
-  { code: 'Slash', symbol: '/', ru_symbol: '.' }, // 51
-  { code: 'ShiftRight', symbol: 'Shift', ru_symbol: 'Shift' }, // 52
+  new Button('CapsLock', 'Caps Lock', 'Caps Lock', 'x1.75'),
+  new Button('KeyA', 'a', 'ф'),
+  new Button('KeyS', 's', 'ы'),
+  new Button('KeyD', 'd', 'в'),
+  new Button('KeyF', 'f', 'а'),
+  new Button('KeyG', 'g', 'п'),
+  new Button('KeyH', 'h', 'р'),
+  new Button('KeyJ', 'j', 'о'),
+  new Button('KeyK', 'k', 'л'),
+  new Button('KeyL', 'l', 'д'),
+  new Button('Semicolon', ';', 'ж'),
+  new Button('Quote', '\'', 'э'),
+  new Button('Enter', 'Enter', 'Enter', 'x2.25'),
 
-  { code: 'ControlLeft', symbol: 'Ctrl', ru_symbol: 'Ctrl' }, // 53
-  { code: 'MetaLeft', symbol: 'Win', ru_symbol: 'Win' }, // 54
-  { code: 'AltLeft', symbol: 'Alt', ru_symbol: 'Alt' }, // 55
-  { code: 'Space', symbol: ' ', ru_symbol: ' ' }, // 56
-  { code: 'AltRight', symbol: 'Alt Gr', ru_symbol: 'Alt Gr' }, // 57
-  { code: 'MetaRight', symbol: 'Win', ru_symbol: 'Win' }, // 58
-  { code: 'ContextMenu', symbol: 'Menu', ru_symbol: 'Menu' }, // 59
-  { code: 'ControlRight', symbol: 'Ctrl', ru_symbol: 'Ctrl' }, // 60
+
+  new Button('ShiftLeft', 'Shift', 'Shift', 'x2.25'),
+  new Button('KeyZ', 'z', 'я'),
+  new Button('KeyX', 'x', 'ч'),
+  new Button('KeyC', 'c', 'с'),
+  new Button('KeyV', 'v', 'м'),
+  new Button('KeyB', 'b', 'и'),
+  new Button('KeyN', 'n', 'т'),
+  new Button('KeyM', 'm', 'ь'),
+  new Button('Comma', ',', 'б'),
+  new Button('Period', '.', 'ю'),
+  new Button('Slash', '/', '.'),
+  new Button('ShiftRight', 'Shift', 'Shift', 'x2.75'),
+
+  new Button('ControlLeft', 'Ctrl', 'Ctrl', 'x1.25'),
+  new Button('MetaLeft', 'Win', 'Win', 'x1.25'),
+  new Button('AltLeft', 'Alt', 'Alt', 'x1.25'),
+  new Button('Space', ' ', ' ', 'x6.25'),
+  new Button('AltRight', 'Alt Gr', 'Alt Gr', 'x1.25'),
+  new Button('MetaRight', 'Win', 'Win', 'x1.25'),
+  new Button('ContextMenu', 'Menu', 'Menu', 'x1.25'),
+  new Button('ControlRight', 'Ctrl', 'Ctrl', 'x1.25'),
 ];
 
-const bigButtons = {
-  13: 'keyboard__button_x2',
-  14: 'keyboard__button_x1-5',
-  27: 'keyboard__button_x1-5',
-  28: 'keyboard__button_x1-75',
-  40: 'keyboard__button_x2-25',
-  41: 'keyboard__button_x2-25',
-  52: 'keyboard__button_x2-75',
-  53: 'keyboard__button_x1-25',
-  54: 'keyboard__button_x1-25',
-  55: 'keyboard__button_x1-25',
-  56: 'keyboard__button_x6-25',
-  57: 'keyboard__button_x1-25',
-  58: 'keyboard__button_x1-25',
-  59: 'keyboard__button_x1-25',
-  60: 'keyboard__button_x1-25',
-};
 
 function setActiveButton(button) {
   button.classList.add('keyboard__button_active');
@@ -119,9 +148,7 @@ function onAnimationEnd() {
 
 function fillKeyboardLayout() {
   for (let i = 0; i < buttons.length; i += 1) {
-    keyboard.children[i].textContent = keyboardLayoutIndex === 0
-      ? buttons[i].symbol
-      : buttons[i].ru_symbol;
+    keyboard.children[i].textContent = buttons[i].getSymbol(keyboardLayoutIndex);
   }
 }
 
@@ -153,12 +180,12 @@ function fillKeyboard() {
     keyboardButton.classList.add('keyboard__button');
     keyboardButton.dataset.code = buttons[i].code;
     keyboardButton.dataset.keydown = 'false';
-    keyboardButton.textContent = keyboardLayoutIndex === 0
-      ? buttons[i].symbol
-      : buttons[i].ru_symbol;
+    keyboardButton.textContent = buttons[i].getSymbol(keyboardLayoutIndex);
     keyboardButton.addEventListener('click', onClickButton);
     keyboardButton.addEventListener('transitionend', onAnimationEnd);
-    if (bigButtons[`${i}`] !== undefined) { keyboardButton.classList.add(bigButtons[`${i}`]); }
+    if (buttons[i].buttonSize !== undefined) {
+      keyboardButton.classList.add(buttons[i].buttonSize);
+    }
     keyboard.appendChild(keyboardButton);
   }
 }
