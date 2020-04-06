@@ -1,13 +1,17 @@
 
 class Button {
-  constructor(code, enSymbol, ruSymbol, buttonSize = 'x1') {
+  constructor(code, enSymbol, ruSymbol, buttonSize = 'x1', color = '1') {
     this.code = code;
     this.symbols = [enSymbol, ruSymbol];
     this.setButtonSize(buttonSize);
+    this.setButtonColor(color);
   }
 
   setButtonSize(size) {
     switch (size) {
+      case 'x0.75':
+        this.buttonSize = 'keyboard__button_x0-75';
+        break;
       case 'x1.25':
         this.buttonSize = 'keyboard__button_x1-25';
         break;
@@ -36,6 +40,21 @@ class Button {
     }
   }
 
+  setButtonColor(color) {
+    switch (color) {
+      case '2':
+        this.buttonColor = 'keyboard__button_color2';
+        break;
+      case '3':
+        this.buttonColor = 'keyboard__button_color3';
+        break;
+      default:
+      case '1':
+        this.buttonColor = undefined;
+        break;
+    }
+  }
+
   getSymbol(keyboardLayoutIndex) {
     return this.symbols[keyboardLayoutIndex];
   }
@@ -44,6 +63,7 @@ class Button {
 
 const input = document.createElement('textarea');
 input.classList.add('textarea');
+input.setAttribute('readonly', true);
 document.body.append(input);
 
 const keyboard = document.createElement('div');
@@ -75,10 +95,10 @@ const buttons = [
   new Button('Digit0', '0', '0'),
   new Button('Minus', '-', '-'),
   new Button('Equal', '=', '='),
-  new Button('Backspace', 'Backspace', 'Backspace', 'x2'),
+  new Button('Backspace', 'Backspace', 'Backspace', 'x2', '2'),
 
 
-  new Button('Tab', 'Tab', 'Tab', 'x1.5'),
+  new Button('Tab', 'Tab', 'Tab', 'x1.5', '2'),
   new Button('KeyQ', 'q', 'й'),
   new Button('KeyW', 'w', 'ц'),
   new Button('KeyE', 'e', 'у'),
@@ -93,7 +113,7 @@ const buttons = [
   new Button('BracketRight', ']', 'ъ'),
   new Button('Backslash', '\\', '\\', 'x1.5'),
 
-  new Button('CapsLock', 'Caps Lock', 'Caps Lock', 'x1.75'),
+  new Button('CapsLock', 'Caps Lock', 'Caps Lock', 'x1.75', '2'),
   new Button('KeyA', 'a', 'ф'),
   new Button('KeyS', 's', 'ы'),
   new Button('KeyD', 'd', 'в'),
@@ -105,9 +125,9 @@ const buttons = [
   new Button('KeyL', 'l', 'д'),
   new Button('Semicolon', ';', 'ж'),
   new Button('Quote', '\'', 'э'),
-  new Button('Enter', 'Enter', 'Enter', 'x2.25'),
+  new Button('Enter', 'Enter', 'Enter', 'x2.25', '2'),
 
-  new Button('ShiftLeft', 'Shift', 'Shift', 'x2.25'),
+  new Button('ShiftLeft', 'Shift', 'Shift', 'x2.25', '2'),
   new Button('KeyZ', 'z', 'я'),
   new Button('KeyX', 'x', 'ч'),
   new Button('KeyC', 'c', 'с'),
@@ -118,16 +138,19 @@ const buttons = [
   new Button('Comma', ',', 'б'),
   new Button('Period', '.', 'ю'),
   new Button('Slash', '/', '.'),
-  new Button('ShiftRight', 'Shift', 'Shift', 'x2.75'),
+  new Button('ShiftRight', 'Shift', 'Shift', 'x1.25', '2'),
+  new Button('ArrowUp', 'ᐃ', 'ᐃ', 'x0.75', '3'),
+  new Button('ContextMenu', 'CM', 'CM', 'x0.75', '3'),
 
-  new Button('ControlLeft', 'Ctrl', 'Ctrl', 'x1.25'),
-  new Button('MetaLeft', 'Win', 'Win', 'x1.25'),
-  new Button('AltLeft', 'Alt', 'Alt', 'x1.25'),
+  new Button('ControlLeft', 'Ctrl', 'Ctrl', 'x1.25', '2'),
+  new Button('MetaLeft', 'Win', 'Win', 'x1.25', '2'),
+  new Button('AltLeft', 'Alt', 'Alt', 'x1.25', '2'),
   new Button('Space', ' ', ' ', 'x6.25'),
-  new Button('AltRight', 'Alt Gr', 'Alt Gr', 'x1.25'),
-  new Button('MetaRight', 'Win', 'Win', 'x1.25'),
-  new Button('ContextMenu', 'Menu', 'Menu', 'x1.25'),
-  new Button('ControlRight', 'Ctrl', 'Ctrl', 'x1.25'),
+  new Button('AltRight', 'Alt Gr', 'Alt Gr', 'x1.25', '2'),
+  new Button('MetaRight', 'Win', 'Win', 'x1.5', '2'),
+  new Button('ArrowLeft', 'ᐊ', 'ᐊ', 'x0.75', '3'),
+  new Button('ArrowDown', 'ᐁ', 'ᐁ', 'x0.75', '3'),
+  new Button('ArrowRight', 'ᐅ', 'ᐅ', 'x0.75', '3'),
 ];
 
 
@@ -156,7 +179,7 @@ function addSymbolToTextArea(symbol) {
     case 'Win':
     case 'Alt':
     case 'Alt Gr':
-    case 'Menu':
+    case 'CM':
       break;
     default:
       inputedSymbols.push(symbol);
@@ -206,9 +229,10 @@ function fillKeyboard() {
     keyboardButton.textContent = buttons[i].getSymbol(keyboardLayoutIndex);
     keyboardButton.addEventListener('click', onClickButton);
     keyboardButton.addEventListener('transitionend', onAnimationEnd);
-    if (buttons[i].buttonSize !== undefined) {
-      keyboardButton.classList.add(buttons[i].buttonSize);
-    }
+    if (buttons[i].buttonSize !== undefined) keyboardButton.classList.add(buttons[i].buttonSize);
+
+    if (buttons[i].buttonColor !== undefined) keyboardButton.classList.add(buttons[i].buttonColor);
+
     keyboard.appendChild(keyboardButton);
   }
 }
