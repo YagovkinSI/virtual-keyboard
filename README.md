@@ -1,7 +1,7 @@
 # RSS Виртуальная клавиатура
 Задание курса по JavaScript от RS School
 
-[результат] (https://github.com/YagovkinSI/virtual-keyboard)
+[Результат] (https://yagovkinsi.github.io/virtual-keyboard/)
 
 ### Реализовано:
 
