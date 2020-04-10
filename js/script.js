@@ -82,7 +82,7 @@ document.body.append(keyboard);
 
 const lagend = document.createElement('div');
 lagend.classList.add('lagend');
-lagend.textContent = 'The keyboard was created in the Windows OS. Change keyboard layout: AltLeft + ShiftLeft.';
+lagend.textContent = 'The keyboard was created in the Windows OS. Change keyboard layout: AltLeft + ControlLeft.';
 document.body.append(lagend);
 
 let keyboardLayoutIndex = parseInt(localStorage.keyboardLayoutIndex, 10);
@@ -182,6 +182,17 @@ function fillKeyboardLayout() {
   for (let i = 0; i < buttons.length; i += 1) {
     const button = keyboard.children[i];
     button.textContent = buttons[i].getSymbol(keyboardLayoutIndex, capsMode, shiftMode);
+
+    if (capsMode) keyboard.children[28].classList.add('keyboard__button_active-mode');
+    else keyboard.children[28].classList.remove('keyboard__button_active-mode');
+
+    if (shiftMode) {
+      keyboard.children[41].classList.add('keyboard__button_active-mode');
+      keyboard.children[52].classList.add('keyboard__button_active-mode');
+    } else {
+      keyboard.children[41].classList.remove('keyboard__button_active-mode');
+      keyboard.children[52].classList.remove('keyboard__button_active-mode');
+    }
   }
 }
 
@@ -189,6 +200,21 @@ function changeKeyboardLayout() {
   keyboardLayoutIndex = (keyboardLayoutIndex + 1) % 2;
   localStorage.setItem('keyboardLayoutIndex', keyboardLayoutIndex);
   fillKeyboardLayout();
+}
+
+function changeMode(mode) {
+  switch (mode) {
+    case 'caps':
+      capsMode = !capsMode;
+      fillKeyboardLayout();
+      break;
+    case 'shift':
+      shiftMode = !shiftMode;
+      fillKeyboardLayout();
+      break;
+    default:
+      break;
+  }
 }
 
 function addSymbolToTextArea(symbol) {
@@ -203,12 +229,10 @@ function addSymbolToTextArea(symbol) {
       inputedSymbols.push('\t');
       break;
     case 'Caps Lock':
-      capsMode = !capsMode;
-      fillKeyboardLayout();
+      changeMode('caps');
       break;
     case 'Shift':
-      shiftMode = !shiftMode;
-      fillKeyboardLayout();
+      changeMode('shift');
       break;
     case 'Ctrl':
     case 'Win':
@@ -227,7 +251,7 @@ function setKeydown(button, state) {
   if (button == null) {
     return;
   }
-  if (state === 'false' && keydowns.length === 2 && keydowns.includes('AltLeft') && keydowns.includes('ShiftLeft')) {
+  if (state === 'false' && keydowns.length === 2 && keydowns.includes('AltLeft') && keydowns.includes('ControlLeft')) {
     changeKeyboardLayout();
   }
   if (state === 'false' && keydowns.includes(button.dataset.code)) { keydowns.splice(keydowns.indexOf(button.dataset.code), 1); }

@@ -67,3 +67,7 @@
     transition: all 0.25s ease;
 }
 
+.keyboard__button_active-mode {
+    color: green;
+}
+
